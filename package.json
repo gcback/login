@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node -r esm src",
+    "start:dev": "nodemon --watch src/ -r esm src/index.js"
   },
   "repository": {
     "type": "git",
@@ -15,5 +17,20 @@
   "bugs": {
     "url": "https://github.com/gcback/login/issues"
   },
-  "homepage": "https://github.com/gcback/login#readme"
+  "homepage": "https://github.com/gcback/login#readme",
+  "dependencies": {
+    "bcrypt": "^3.0.7",
+    "boom": "^7.3.0",
+    "dotenv": "^8.2.0",
+    "esm": "^3.2.25",
+    "joi": "^14.3.1",
+    "jsonwebtoken": "^8.5.1",
+    "koa": "^2.11.0",
+    "koa-bodyparser": "^4.2.1",
+    "koa-router": "^7.4.0",
+    "mongoose": "^5.8.9"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.2"
+  }
 }
