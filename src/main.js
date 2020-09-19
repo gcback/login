@@ -11,19 +11,19 @@ const router = new Router();
 
 dotenv.config();
 router.use('/api', Api.routes());
-const { PORT, MONGO_URI } = process.env;
+const { PORT, MONGO_URI, MONGO_ID, MONGO_PWD } = process.env;
 
 app.use(bodyParser());
 app.use(jwtMiddleware);
 app.use(router.routes()).use(router.allowedMethods());
 
-mongoose.connect(MONGO_URI, { 
-    useNewUrlParser: true, 
+mongoose.connect(MONGO_URI, {
+    useNewUrlParser: true,
     useFindAndModify: false,
     useUnifiedTopology: true,
-    user: 'studyplus',
-    pass: 'test1234',
-}).then(()=>{
+    user: MONGO_ID,
+    pass: MONGO_PWD,
+}).then(() => {
     console.log('Connected to MongoDB');
 });
 

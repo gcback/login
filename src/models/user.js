@@ -7,19 +7,19 @@ const UserSchema = new Schema({
     hashedPassword: String,
 });
 
-UserSchema.methods.setPassword = async function(password) {
+UserSchema.methods.setPassword = async function (password) {
     const hash = await bcrypt.hash(password, 10);
 
     this.hashedPassword = hash;
 };
 
-UserSchema.methods.checkPassword = async function(password) {
+UserSchema.methods.checkPassword = async function (password) {
     const result = await bcrypt.compare(password, this.hashedPassword);
 
     return result;
 };
 
-UserSchema.methods.generateToken = function() {
+UserSchema.methods.generateToken = function () {
     const token = jwt.sign(
         {   // first: 토큰에 넣고 싶은 데이터
             _id: this.id,
@@ -34,17 +34,18 @@ UserSchema.methods.generateToken = function() {
     return token;
 };
 
-UserSchema.methods.serialize = function() {
+UserSchema.methods.serialize = function () {
     const data = this.toJSON();
-    
+
     delete data.hashedPassword;
 
     return data;
 };
 
-UserSchema.statics.findByUsername = function(username) {
+UserSchema.statics.findByUsername = function (username) {
     return this.findOne({ username });
 };
 
 const User = mongoose.model('User', UserSchema);
+
 export default User;
